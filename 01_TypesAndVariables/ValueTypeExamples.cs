@@ -54,7 +54,7 @@ namespace _01_TypesAndVariables
             //Console.WriteLine(1.24354365465345345d);
             //Console.WriteLine(1.24354365465345345m);
         }
-        enum PastryType { Cake, Cupcake, Croissants, Pie, Donut}
+        enum PastryType { Cake, Cupcake, Croissants, Pies, Donut}
         [TestMethod]
         public void Enums()
         {
