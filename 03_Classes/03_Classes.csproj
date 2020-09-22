@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0C19F69C-1C8E-4CEC-9172-6C54B1F39C34}</ProjectGuid>
+    <ProjectGuid>{1F60CEEB-3318-481B-B566-3FDDB9D6F8AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_01_TypesAndVariables</RootNamespace>
-    <AssemblyName>01_TypesAndVariables</AssemblyName>
+    <RootNamespace>_03_Classes</RootNamespace>
+    <AssemblyName>03_Classes</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,7 +51,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReferenceTypeExamples.cs" />
+    <Compile Include="Calculator.cs" />
+    <Compile Include="Greeter.cs" />
+    <Compile Include="MethodTests.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="Person Test.cs" />
+    <Compile Include="Vehicle.cs" />
+    <Compile Include="Vehicle Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
