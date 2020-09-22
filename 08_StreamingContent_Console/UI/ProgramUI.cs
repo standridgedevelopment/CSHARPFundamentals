@@ -11,12 +11,8 @@ namespace _08_StreamingContent_Console.UI
     class ProgramUI
     {
         private readonly StreamingRepository _streamingRepo = new StreamingRepository();
-        private readonly StreamingRepository _movieRepo = new StreamingRepository();
-        private readonly StreamingRepository _showRepo = new StreamingRepository();
         public void Run()
         {
-            SeedMovie();
-            SeedShow();
             SeedContent();
             MainMenu();
         }
@@ -354,6 +350,12 @@ namespace _08_StreamingContent_Console.UI
                              $"{content.Description}\n" +
                              "----------------");
         }
+        private void DisplaySimple(Movie content)
+        {
+            Console.WriteLine($"{content.Title} \n" +
+                             $"{content.Description}\n" +
+                             "----------------");
+        }
         private void DisplayAllProps(StreamingContent content)
         {
             Console.WriteLine($"Title: {content.Title}");
@@ -551,19 +553,35 @@ namespace _08_StreamingContent_Console.UI
                 goto chooseRuntime;
             }
             //Pass that to the add method in our repo
-            _movieRepo.AddContentToDirectory(content);
+            _streamingRepo.AddContentToDirectory(content);
             Console.Clear();
             Console.WriteLine($"You have successfully added the movie, {content.Title}\n" +
                          "Press any key to continue");
             Console.ReadKey();
         }
-        private void ShowAllMovies()
+        /*private void ShowAllMovies()
         {
             Console.Clear();
             //Get the items from our fake database
             List<StreamingContent> listOfContent = _movieRepo.GetContents();
             //Take Each item and display property values
             foreach (Movie content in listOfContent)
+            {
+                DisplaySimple(content);
+            }
+            //Puase the program so the user can see the printed objects
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            Console.Clear();
+            //GOAL: Show all items in our fake database
+        }*/
+        private void ShowAllMovies()
+        {
+            Console.Clear();
+            //Get the items from our fake database
+            List<Movie> listOfContent = _streamingRepo.GetAllMovies();
+            //Take Each item and display property values
+            foreach (var content in listOfContent)
             {
                 DisplaySimple(content);
             }
@@ -580,7 +598,7 @@ namespace _08_StreamingContent_Console.UI
             Console.Clear();
             Console.WriteLine("Enter the title of the content you would like to find");
             string title = Console.ReadLine();
-            content = (Movie)_movieRepo.GetContentByTitle(title);
+            content = _streamingRepo.GetMovieByTitle(title);
             Console.Clear();
 
             if (content == null)
@@ -615,7 +633,7 @@ namespace _08_StreamingContent_Console.UI
             Console.Clear();
             Console.WriteLine("Which item would you like to remove?");
             //need a list of the items
-            List<StreamingContent> contentList = _movieRepo.GetContents();
+            List<Movie> contentList = _streamingRepo.GetAllMovies();
             int count = 0;
             foreach (var item in contentList)
             {
@@ -628,7 +646,7 @@ namespace _08_StreamingContent_Console.UI
             if (correctIndex >= 0 && correctIndex < contentList.Count)
             {
                 Movie desiredContent = (Movie)contentList[correctIndex];
-                if (_movieRepo.DeleteExistingContent(desiredContent))
+                if (_streamingRepo.DeleteExistingContent(desiredContent))
                 {
                     Console.Clear();
                     Console.WriteLine($"{desiredContent.Title} successfully removed!");
@@ -836,7 +854,7 @@ namespace _08_StreamingContent_Console.UI
 
             //a new content with properties filled out by user
             //Pass that to the add method in our repo
-            _showRepo.AddContentToDirectory(content);
+            _streamingRepo.AddContentToDirectory(content);
             Console.Clear();
             Console.WriteLine($"You have successfully added the show, {content.Title}\n" +
                          "Press any key to continue");
@@ -846,7 +864,7 @@ namespace _08_StreamingContent_Console.UI
         {
             Console.Clear();
             //Get the items from our fake database
-            List<StreamingContent> listOfContent = _showRepo.GetContents();
+            List<Show> listOfContent = _streamingRepo.GetAllShows();
             //Take Each item and display property values
             foreach (Show content in listOfContent)
             {
@@ -865,7 +883,7 @@ namespace _08_StreamingContent_Console.UI
             Console.Clear();
             Console.WriteLine("Enter the title of the content you would like to find");
             string title = Console.ReadLine();
-            content = (Show)_showRepo.GetContentByTitle(title);
+            content =_streamingRepo.GetShowByTitle(title);
             Console.Clear();
 
             if (content == null)
@@ -900,7 +918,7 @@ namespace _08_StreamingContent_Console.UI
             Console.Clear();
             Console.WriteLine("Which item would you like to remove?");
             //need a list of the items
-            List<StreamingContent> contentList = _showRepo.GetContents();
+            List<Show> contentList = _streamingRepo.GetAllShows();
             int count = 0;
             foreach (var item in contentList)
             {
@@ -913,7 +931,7 @@ namespace _08_StreamingContent_Console.UI
             if (correctIndex >= 0 && correctIndex < contentList.Count)
             {
                 Show desiredContent = (Show)contentList[correctIndex];
-                if (_showRepo.DeleteExistingContent(desiredContent))
+                if (_streamingRepo.DeleteExistingContent(desiredContent))
                 {
                     Console.Clear();
                     Console.WriteLine($"{desiredContent.Title} successfully removed!");
@@ -951,37 +969,31 @@ namespace _08_StreamingContent_Console.UI
             var titleThree = new StreamingContent("Streaming 3", "Stream this instead", 4.75f, MaturityRating.PG, GenreType.Bromance);
             var titleFour = new StreamingContent("Streaming 4", "Or why not this?", 3f, MaturityRating.PG, GenreType.Bromance);
             var titleFive = new StreamingContent("Avatar: TLA", "An Avatar Air bends", 5f, MaturityRating.PG_13, GenreType.Bromance);
+            var toyStory = new Movie("Toy Story", "Toys have a touching story", 4.5f, MaturityRating.PG, GenreType.Bromance, 60);
+            var toyStory2 = new Movie("Toy Story 2", "Toys have another story", 5f, MaturityRating.PG, GenreType.Bromance, 80);
+            var toyStory3 = new Movie("Toy Story 3", "Toys have a third story", 4.75f, MaturityRating.PG, GenreType.Bromance, 90);
+            var toyStory4 = new Movie("Toy Story 4", "Toys have one more story", 3f, MaturityRating.PG, GenreType.Bromance, 120);
+            var downtonAbbey = new Show("Downton Abbey", "Drama drama drama and its delicious", 4.5f, MaturityRating.PG, GenreType.Bromance);
+            var reZero = new Show("Re:Zero", "Despair. Now animated", 5f, MaturityRating.PG, GenreType.Bromance);
+            var HIMYM = new Show("How I Met Your Mother", "Have I ever told you the story of how I met your mother?", 4.75f, MaturityRating.PG, GenreType.Bromance);
+            var korra = new Show("Legend of Korra", "It's okay", 3f, MaturityRating.PG, GenreType.Bromance);
+            var atla = new Show("Avatar: TLA", "An Avatar Air bends", 5f, MaturityRating.PG_13, GenreType.Bromance);
             _streamingRepo.AddContentToDirectory(titleOne);
             _streamingRepo.AddContentToDirectory(titleTwo);
             _streamingRepo.AddContentToDirectory(titleThree);
             _streamingRepo.AddContentToDirectory(titleFour);
             _streamingRepo.AddContentToDirectory(titleFive);
+            _streamingRepo.AddContentToDirectory(toyStory);
+            _streamingRepo.AddContentToDirectory(toyStory2);
+           _streamingRepo.AddContentToDirectory(toyStory3);
+           _streamingRepo.AddContentToDirectory(toyStory4);
+            _streamingRepo.AddContentToDirectory(downtonAbbey);
+            _streamingRepo.AddContentToDirectory(reZero);
+            _streamingRepo.AddContentToDirectory(HIMYM);
+            _streamingRepo.AddContentToDirectory(korra);
+            _streamingRepo.AddContentToDirectory(atla);
+
         }
-        private void SeedMovie()
-        {
-            var titleOne = new Movie("Toy Story", "Toys have a story", 4.5f, MaturityRating.PG, GenreType.Bromance, 60);
-            var titleTwo = new Movie("Toy Story 2", "Toys have another story", 5f, MaturityRating.PG, GenreType.Bromance, 80);
-            var titleThree = new Movie("Toy Story 3", "Toys have a third story", 4.75f, MaturityRating.PG, GenreType.Bromance, 90);
-            var titleFour = new Movie("Toy Story 4", "Toys have one more story", 3f, MaturityRating.PG, GenreType.Bromance, 120);
-            var titleFive = new Movie("Avatar: TLA", "An Avatar Air bends", 5f, MaturityRating.PG_13, GenreType.Bromance,30);
-            _movieRepo.AddContentToDirectory(titleOne);
-            _movieRepo.AddContentToDirectory(titleTwo);
-            _movieRepo.AddContentToDirectory(titleThree);
-            _movieRepo.AddContentToDirectory(titleFour);
-            _movieRepo.AddContentToDirectory(titleFive);
-        }
-        private void SeedShow()
-        {
-            var titleOne = new Show("Downton Abbey", "Drama drama drama and its delicious", 4.5f, MaturityRating.PG, GenreType.Bromance);
-            var titleTwo = new Show("Re:Zero", "Despair. Now animated", 5f, MaturityRating.PG, GenreType.Bromance);
-            var titleThree = new Show("How I Met Your Mother", "Have I ever told you the story of how I met your mother?", 4.75f, MaturityRating.PG, GenreType.Bromance);
-            var titleFour = new Show("Legend of Korra", "It's okay", 3f, MaturityRating.PG, GenreType.Bromance);
-            var titleFive = new Show("Avatar: TLA", "An Avatar Air bends", 5f, MaturityRating.PG_13, GenreType.Bromance);
-            _showRepo.AddContentToDirectory(titleOne);
-            _showRepo.AddContentToDirectory(titleTwo);
-            _showRepo.AddContentToDirectory(titleThree);
-            _showRepo.AddContentToDirectory(titleFour);
-            _showRepo.AddContentToDirectory(titleFive);
-        }
+       
     }
 }

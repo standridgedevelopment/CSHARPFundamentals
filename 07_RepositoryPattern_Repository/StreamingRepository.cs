@@ -22,10 +22,9 @@ namespace _07_RepositoryPattern_Repository
                 {
                     allShows.Add((Show)show);
                 }
-                //return that list
-                return allShows;
+
             }
-            return null;
+            return allShows;
         }
         public List<Movie> GetAllMovies()
         {
@@ -36,10 +35,10 @@ namespace _07_RepositoryPattern_Repository
                 if (movie is Movie)
                 {
                     allMovies.Add((Movie)movie);
-                }
-                return allMovies;
+               }
+                //return allMovies;
             }
-            return null;
+            return allMovies;
         }
 
         //GetByTitle
