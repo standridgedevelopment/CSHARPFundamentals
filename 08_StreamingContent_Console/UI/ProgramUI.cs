@@ -946,10 +946,10 @@ namespace _08_StreamingContent_Console.UI
 
         private void SeedContent()
         {
-            var titleOne = new StreamingContent("Streaming 1", "Toys have a story", 4.5f, MaturityRating.PG, GenreType.Bromance);
-            var titleTwo = new StreamingContent("Streaming 2", "Toys have another story", 5f, MaturityRating.PG, GenreType.Bromance);
-            var titleThree = new StreamingContent("Streaming 3", "Toys have a third story", 4.75f, MaturityRating.PG, GenreType.Bromance);
-            var titleFour = new StreamingContent("Streaming 4", "Toys have one more story", 3f, MaturityRating.PG, GenreType.Bromance);
+            var titleOne = new StreamingContent("Streaming 1", "Streaming in style", 4.5f, MaturityRating.PG, GenreType.Bromance);
+            var titleTwo = new StreamingContent("Streaming 2", "Stream another", 5f, MaturityRating.PG, GenreType.Bromance);
+            var titleThree = new StreamingContent("Streaming 3", "Stream this instead", 4.75f, MaturityRating.PG, GenreType.Bromance);
+            var titleFour = new StreamingContent("Streaming 4", "Or why not this?", 3f, MaturityRating.PG, GenreType.Bromance);
             var titleFive = new StreamingContent("Avatar: TLA", "An Avatar Air bends", 5f, MaturityRating.PG_13, GenreType.Bromance);
             _streamingRepo.AddContentToDirectory(titleOne);
             _streamingRepo.AddContentToDirectory(titleTwo);
@@ -972,10 +972,10 @@ namespace _08_StreamingContent_Console.UI
         }
         private void SeedShow()
         {
-            var titleOne = new Show("Downton Abbey", "Toys have a story", 4.5f, MaturityRating.PG, GenreType.Bromance);
-            var titleTwo = new Show("Re:Zero", "Toys have another story", 5f, MaturityRating.PG, GenreType.Bromance);
-            var titleThree = new Show("How I Met Your Mother", "Toys have a third story", 4.75f, MaturityRating.PG, GenreType.Bromance);
-            var titleFour = new Show("Legend of Korra", "Toys have one more story", 3f, MaturityRating.PG, GenreType.Bromance);
+            var titleOne = new Show("Downton Abbey", "Drama drama drama and its delicious", 4.5f, MaturityRating.PG, GenreType.Bromance);
+            var titleTwo = new Show("Re:Zero", "Despair. Now animated", 5f, MaturityRating.PG, GenreType.Bromance);
+            var titleThree = new Show("How I Met Your Mother", "Have I ever told you the story of how I met your mother?", 4.75f, MaturityRating.PG, GenreType.Bromance);
+            var titleFour = new Show("Legend of Korra", "It's okay", 3f, MaturityRating.PG, GenreType.Bromance);
             var titleFive = new Show("Avatar: TLA", "An Avatar Air bends", 5f, MaturityRating.PG_13, GenreType.Bromance);
             _showRepo.AddContentToDirectory(titleOne);
             _showRepo.AddContentToDirectory(titleTwo);
