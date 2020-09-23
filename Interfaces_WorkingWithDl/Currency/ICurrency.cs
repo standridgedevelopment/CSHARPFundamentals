@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Interfaces_WorkingWithDl
+namespace Interfaces_WorkingWithDl.Currency
 {
-    class Class1
+    public interface ICurrency
     {
+        string Name { get; }
+        decimal Value { get; }
+
     }
 }

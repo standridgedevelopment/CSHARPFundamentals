@@ -18,7 +18,7 @@ namespace _07_RepositoryPattern_Tests
             Episode episodeOfTvShow = new Episode();
 
             tvShow.Episodes.Add(episodeOfTvShow);
-            Movie venom = new Movie("Venom", "The best romance movie of our age", 9005, MaturityRating.PG_13, true, GenreType.Bromance, 132);
+            Movie venom = new Movie("Venom", "The best romance movie of our age", 9005, MaturityRating.PG_13, GenreType.Bromance, 132);
             StreamingRepository repo = new StreamingRepository();
             repo.AddContentToDirectory(tvShow);
             
